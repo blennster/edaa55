@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Lab01-introduktion/Lab01-introduktion.iml" filepath="$PROJECT_DIR$/Lab01-introduktion/Lab01-introduktion.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lab02-anv-square/Lab02-anv-square.iml" filepath="$PROJECT_DIR$/Lab02-anv-square/Lab02-anv-square.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lab03-jblockmole/Lab03-jblockmole.iml" filepath="$PROJECT_DIR$/Lab03-jblockmole/Lab03-jblockmole.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lab04-textspel-klasser/Lab04-textspel-klasser.iml" filepath="$PROJECT_DIR$/Lab04-textspel-klasser/Lab04-textspel-klasser.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lab05-turtle/Lab05-turtle.iml" filepath="$PROJECT_DIR$/Lab05-turtle/Lab05-turtle.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lab07-rekrytering/Lab07-rekrytering.iml" filepath="$PROJECT_DIR$/Lab07-rekrytering/Lab07-rekrytering.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lab08-matriser/Lab08-matriser.iml" filepath="$PROJECT_DIR$/Lab08-matriser/Lab08-matriser.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lab09-turtlerace-1/Lab09-turtlerace-1.iml" filepath="$PROJECT_DIR$/Lab09-turtlerace-1/Lab09-turtlerace-1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cs_pt/cs_pt.iml" filepath="$PROJECT_DIR$/cs_pt/cs_pt.iml" />
+    </modules>
+  </component>
+</project>
