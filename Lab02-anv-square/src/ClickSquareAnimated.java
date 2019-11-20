@@ -8,6 +8,7 @@ public class ClickSquareAnimated {
 		int x, y;
 		int deltaX, deltaY;
 		sq.draw(w);
+
 		while (true) {
 			w.waitForMouseClick();
 			//sq = new Square(w.getMouseX() - 50, w.getMouseY() - 50, 100);
@@ -17,7 +18,7 @@ public class ClickSquareAnimated {
 			deltaY = y / 10;
 			for (int i = 0; i < 10; i++) {
 			    SimpleWindow.delay(10);
-				//sq.erase(w);
+				sq.erase(w);
 				sq.move(deltaX, deltaY);
 				sq.draw(w);
 			}

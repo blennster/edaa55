@@ -11,6 +11,7 @@ public class Game {
         System.out.print("Till: ");
         int to = scanner.nextInt();
 
+
         MultTable table = new MultTable(from, to);
 
         System.out.println("Tryck enter när du är redo att starta tiden.");

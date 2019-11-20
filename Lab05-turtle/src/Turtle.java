@@ -1,12 +1,14 @@
 import se.lth.cs.pt.window.SimpleWindow;
 
+import java.util.Random;
+
 public class Turtle {
 
 	private SimpleWindow w;
 	private int x, y;
 	private float pX, pY; // Precisions variabler
-	int beta = 90;
-	boolean penIsDown = false;
+	private int beta = 90;
+	private boolean penIsDown = false;
 	private float RESOLUTION = 2;
 
 	/** Skapar en sköldpadda som ritar i ritfönstret w. Från början 
@@ -83,5 +85,23 @@ public class Turtle {
 	/** Tar reda på sköldpaddans riktning, i grader från den positiva X-axeln. */
  	public int getDirection() {
  		return beta;
+	}
+
+	public int distTo(Turtle other) {
+		double dx = Math.abs(x - other.getX());
+		double dy = Math.abs(y - other.getY());
+
+		dx *= dx;
+		dy *= dy;
+
+		double dist = Math.sqrt(dx + dy);
+
+		return (int)Math.round(dist);
+	}
+
+	public void moveRandomly() {
+ 		Random rnd = new Random();
+		left(rnd.nextInt(360) - 180); // Ett slumpmässigt tal mellan -180 och 180
+		forward(rnd.nextInt(9) + 1); // 1-10
 	}
 }
