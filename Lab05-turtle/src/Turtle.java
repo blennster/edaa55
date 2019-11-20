@@ -101,7 +101,7 @@ public class Turtle {
 
 	public void moveRandomly() {
  		Random rnd = new Random();
-		left(rnd.nextInt(360) - 180); // Ett slumpmässigt tal mellan -180 och 180
-		forward(rnd.nextInt(9) + 1); // 1-10
+		left(rnd.nextInt(361) - 180); // Ett slumpmässigt tal mellan -180 och 180
+		forward(rnd.nextInt(10) + 1); // 1-10
 	}
 }
