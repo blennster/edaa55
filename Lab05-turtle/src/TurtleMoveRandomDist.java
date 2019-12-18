@@ -19,8 +19,8 @@ public class TurtleMoveRandomDist {
     }
 
     public static void moveTurtle(Turtle t, Random rnd) {
-        t.left(rnd.nextInt(360) - 180); // Ett slumpmässigt tal mellan -180 och 180
-        t.forward(rnd.nextInt(9) + 1); // 1-10
+        t.left(rnd.nextInt(361) - 180); // Ett slumpmässigt tal mellan -180 och 180
+        t.forward(rnd.nextInt(10) + 1); // 1-10
     }
 
     public static int getDist(Turtle t1, Turtle t2) {

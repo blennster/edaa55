@@ -65,6 +65,8 @@ public class Turtle {
 	public void jumpTo(int newX, int newY) {
 		x = newX;
 		y = newY;
+		pX = x;
+		pY = y;
 	}
 
 	/** Återställer huvudriktningen till den ursprungliga. */
