@@ -13,12 +13,14 @@ public class LifeBoard {
 		this.board = new boolean[rows][cols];
 		this.rows = rows;
 		this.cols = cols;
+		generation = 1;
 	}
 
 	/** Undersöker om det finns en individ i rutan med index row,col, 
 	    Om index row,col hamnar utanför spelplanen returneras false. */
 	public boolean get(int row, int col) {
-		return board[row][col];
+		return row < rows && row >= 0 &&
+				col < cols && col >= 0 ? board[row][col] : false;
 	}
 
 	/** Lagrar värdet val i rutan med index row,col. */
@@ -43,6 +45,6 @@ public class LifeBoard {
 
 	/** Ökar generationsnumret med ett. */
 	public void increaseGeneration() {
-		generation++;
+		generation += 1;
 	}
 }
