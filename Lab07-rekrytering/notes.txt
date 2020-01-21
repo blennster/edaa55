@@ -1,0 +1,34 @@
+1: String name och fältet int[] grades
+
+2: Filereader sköter läsning av filer och FindBestApplicant har sökalgoritmen
+
+4: Hjälpmetoden parseGrades kollar på rad 24 om betyget är U och sätter heltalsvärdet till 0. Betyget lagras i grades.
+
+8: Det ser konstigt ut för att toString inte är implementerat.
+
+11: För då behöver man bara ändra värdet på ett ställe samt så blir koden mer läslig eftersom konstanten är besrkiven.
+
+12: Urvalet ändras då gränsen ändras. Jag hade valt 4,0.
+
+13: Om man inte kollar så att det finns fler rader i filen så kommer det bli ett fel där och om man inte kollar
+ifall nbrOfRows är större än filen så kommer det finnas null element i vektorn vilket gör att andra delar av
+koden inte fungerar som de ska. Jag löste detta genom att kolla ifall antalet element som lagts till i vektorn
+är mindre än numberOfRows och justerar det därefter.
+
+14: Applications_x fungerar inte eftersom den har ett annat betygsystem.
+
+15: Användardatan bör valideras så att den följer ett visst förväntat format.
+Det finns öven fler rader i filen än vad det finns data
+
+17: Om man bara väljer de som sorterats högst så blir det orättvist då namnet bestämmer vem som är överst
+men egentligen så borde kanske den som sökt först få vara överst.
+
+18: Det har funnits olika betygsystem så därför bör appen kunna hantera även äldre system. -1 tolkas i min version
+av programmet som en nolla men hade i ett mer avancerat exempel kunnat innebära att appen ska leta efter betyg i en
+annan fil eller databas. För studenten som hoppade av så blir det jobbigt för den studenten kommer ha lättare
+att få högre medelbetyg då hen kanske hoppar efter en kurs som de fått en femma i men har då fem i medel.
+Skrivfel kan antigen tolkas som att första siffran är det man är efter eller ge en nolla för att inte ge någon
+en fördel för att de skriver fel.
+
+
+
