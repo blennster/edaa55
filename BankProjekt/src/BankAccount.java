@@ -1,7 +1,7 @@
 
 public class BankAccount {
 
-    private static int counter = 0;
+    private static int counter = 1;
     private Customer holder;
     private double balance;
     private int accountNr;
@@ -36,7 +36,7 @@ public class BankAccount {
      * Tar reda på det kontonummer som identifierar detta konto.
      */
     public int getAccountNumber() {
-        return holder.getCustomerNr();
+        return accountNr;
     }
 
     /**
@@ -65,6 +65,6 @@ public class BankAccount {
      * Returnerar en strängrepresentation av bankkontot.
      */
     public String toString() {
-        return String.format("Konto %d (%s)", accountNr, holder);
+        return String.format("konto %d (%s)", accountNr, holder);
     }
 }

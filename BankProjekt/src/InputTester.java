@@ -12,6 +12,10 @@ public class InputTester extends InputHelper {
         setInputs(inputs);
     }
 
+    public InputTester() {
+        super(null); // Kan ge null error vilket är bra för scanner ska inte användas
+    }
+
     /**
      * Ger tillbacka en int från den raden som förväntas i input
      */

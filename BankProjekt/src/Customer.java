@@ -1,6 +1,6 @@
 
 public class Customer {
-    private static int counter = 0;
+    private static int counter = 1;
 
     private String name;
     private long idNr;

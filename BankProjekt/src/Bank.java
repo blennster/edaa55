@@ -11,11 +11,12 @@ public class Bank {
      */
     public int addAccount(String holderName, long idNr) {
         Customer holder = findHolder(idNr);
-        if (holder == null || holder.getName().equals(holderName)) {
+        if (holder == null) {
             holder = new Customer(holderName, idNr);
         }
-        accounts.add(new BankAccount(holder));
-        return holder.getCustomerNr();
+        BankAccount account = new BankAccount(holder);
+        accounts.add(account);
+        return account.getAccountNumber();
     }
 
     /**

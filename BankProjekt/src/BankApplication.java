@@ -20,7 +20,7 @@ public class BankApplication {
     public void runApplication() {
         while (true) {
             displayMenu();
-            handleInput();
+            readInput();
         }
     }
 
@@ -37,14 +37,14 @@ public class BankApplication {
         System.out.println("9. Avsluta");
     }
 
-    public String handleInput() {
+    public String readInput() {
         int input = ih.readInt("val: ");
-        String result = "";
+        String result;
         switch (input) {
             case 1: result = handleFind(); break;
             case 6: result = handleCreate(); break;
             case 8: result = handlePrint(); break;
-            default: System.out.println("Vänligen välj ett giltligt alternativ.");
+            default: result = "Vänligen välj ett giltligt alternativ.";
         }
         if (!isTesting) System.out.println(result);
         return result;
