@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/BankProjekt/BankProjekt.iml" filepath="$PROJECT_DIR$/BankProjekt/BankProjekt.iml" />
       <module fileurl="file://$PROJECT_DIR$/Lab01-introduktion/Lab01-introduktion.iml" filepath="$PROJECT_DIR$/Lab01-introduktion/Lab01-introduktion.iml" />
       <module fileurl="file://$PROJECT_DIR$/Lab02-anv-square/Lab02-anv-square.iml" filepath="$PROJECT_DIR$/Lab02-anv-square/Lab02-anv-square.iml" />
       <module fileurl="file://$PROJECT_DIR$/Lab03-jblockmole/Lab03-jblockmole.iml" filepath="$PROJECT_DIR$/Lab03-jblockmole/Lab03-jblockmole.iml" />
