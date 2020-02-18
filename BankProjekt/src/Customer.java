@@ -1,5 +1,5 @@
 
-public class Customer {
+public class Customer implements Comparable<Customer> {
     private static int counter = 1;
 
     private String name;
@@ -42,5 +42,15 @@ public class Customer {
      */
     public String toString() {
         return String.format("%s, id %d, kundnr %d", name, idNr, customerNr);
+    }
+
+    public int compareTo(Customer o) {
+        int cmpr = name.compareTo(o.getName());
+        if (cmpr == 0) {
+            return customerNr - o.getCustomerNr();
+        }
+        else {
+            return cmpr;
+        }
     }
 }

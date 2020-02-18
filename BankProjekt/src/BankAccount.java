@@ -1,5 +1,5 @@
 
-public class BankAccount {
+public class BankAccount implements Comparable<BankAccount> {
 
     private static int counter = 1;
     private Customer holder;
@@ -66,5 +66,15 @@ public class BankAccount {
      */
     public String toString() {
         return String.format("konto %d (%s)", accountNr, holder);
+    }
+
+    public int compareTo(BankAccount o) {
+        int holderCmpr = holder.compareTo(o.getHolder());
+        if (holderCmpr == 0) {
+            return accountNr - o.getAccountNumber();
+        }
+        else {
+            return holderCmpr;
+        }
     }
 }

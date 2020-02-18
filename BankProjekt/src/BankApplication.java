@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class BankApplication {
@@ -20,7 +23,7 @@ public class BankApplication {
     public void runApplication() {
         while (true) {
             displayMenu();
-            readInput();
+            System.out.println(readInput());
         }
     }
 
@@ -37,32 +40,92 @@ public class BankApplication {
         System.out.println("9. Avsluta");
     }
 
+    /**
+     * Alla cases kommer returnera den sträng som ska visas för användaren för att göra mer testbar kod.
+     */
     public String readInput() {
-        int input = ih.readInt("val: ");
         String result;
-        switch (input) {
-            case 1: result = handleFind(); break;
-            case 6: result = handleCreate(); break;
-            case 8: result = handlePrint(); break;
-            default: result = "Vänligen välj ett giltligt alternativ.";
+        int input;
+
+        try {
+            input = ih.readInt("val: ");
+            switch (input) {
+                case 1: result = handleFindById(); break;
+                case 2: result = handleFindByPart(); break;
+                case 3: result = handleDeposit(); break;
+                case 4: result = handleWithdraw(); break;
+                case 5: result = handleTransfer(); break;
+                case 6: result = handleCreate(); break;
+                case 7: result = handleDelete(); break;
+                case 8: result = handlePrint(); break;
+                case 9: System.exit(0);
+                default: result = "Vänligen välj ett giltligt alternativ.";
+            }
+        } catch (InputMismatchException e) {
+            result = e.getMessage();
         }
-        if (!isTesting) System.out.println(result);
         return result;
     }
 
-    private String handleFind() {
-        String query = ih.readLine("namn: ");
-        return "";
+    private String handleFindById() {
+        int query = ih.readInt("id: ");
+        return listAccounts(bank.findAccountsForHolder(query));
     }
 
-    public void handleFind(String query) {
+    private String handleFindByPart() {
+        String query = ih.readLine("namn: ");
+        ArrayList<Customer> customers = bank.findByPartofName(query);
+        return listFromCustomers(customers);
+    }
 
+    private String handleDeposit() {
+        BankAccount account = getAccount("från konto: ");
+        double amount = getPositiveAmount();
+
+        account.deposit(amount);
+        return listAccount(account);
+    }
+
+    private String handleWithdraw() {
+        BankAccount account = getAccount("från konto: ");
+        double amount = getPositiveAmount();
+        double balance = account.getAmount();
+
+        if (balance < amount) {
+            return String.format("uttaget misslyckades, endast %.2f på kontot!", balance);
+        }
+        else {
+            account.withdraw(amount);
+            return listAccount(account);
+        }
+    }
+
+    private String handleTransfer() {
+        BankAccount fromAccount = getAccount("från konto: ");
+        BankAccount toAccount = getAccount("till konto: ");
+        double amount = getPositiveAmount();
+
+        if (amount > fromAccount.getAmount()) {
+            return String.format("överföringen misslyckades, endast %.2f på kontot!", fromAccount.getAmount());
+        } else {
+            fromAccount.withdraw(amount);
+            toAccount.deposit(amount);
+            return listAccount(fromAccount) + listAccount(toAccount);
+        }
     }
 
     private String handleCreate() {
         String name = ih.readLine("namn: ");
         int idNr = ih.readInt("id: ");
-        return "konto skapat: " + createAccount(name, idNr);
+        int accountNr = createAccount(name, idNr);
+        if (accountNr == -1) return "kunde inte skapa konto, id och namn stämde ej överrens";
+        return "konto skapat: " + accountNr;
+    }
+
+    private String handleDelete() {
+        BankAccount account = getAccount("konto: ");
+        bank.removeAccount(account.getAccountNumber());
+        return "konto borttaget.";
     }
 
     private int createAccount(String name, int idNr) {
@@ -70,11 +133,63 @@ public class BankApplication {
     }
 
     private String handlePrint() {
-        StringBuilder result = new StringBuilder();
-        for (BankAccount acc: bank.getAllAccounts()) {
-            result.append(acc).append("\n");
+        ArrayList<BankAccount> accounts = bank.getAllAccounts();
+        ArrayList<BankAccount> sortedAccounts = new ArrayList<>();
+
+        return listAccounts(bank.getAllAccounts());
+    }
+
+    private String listAccounts(ArrayList<BankAccount> accounts) {
+        Collections.sort(accounts);
+        StringBuilder result = new StringBuilder(); // String builder ger bättre prestanda än concat.
+        String str = "";
+        for (BankAccount acc: accounts) {
+            str = listAccount(acc);
+            result.append(str);
         }
         return result.toString();
+    }
+
+    private String listAccount(BankAccount account) {
+        return String.format("%s: %.2f\n", account, account.getAmount());
+    }
+
+    private String listFromCustomers(ArrayList<Customer> customers) {
+        StringBuilder result = new StringBuilder();
+        ArrayList<BankAccount> accounts;
+
+        if (customers.size() == 0 ) {
+            result.append("inga konton hittades.");
+        } else {
+            for (Customer cust: customers) {
+                accounts = bank.findAccountsForHolder(cust.getIdNr());
+                result.append(listAccounts(accounts));
+            }
+        }
+        return result.toString();
+    }
+
+    private BankAccount getAccount(String prompt) {
+        BankAccount account = null;
+        int accountNr = ih.readInt(prompt);
+        account = bank.findByNumber(accountNr);
+
+        if (account == null) {
+            throw new InputMismatchException("inget konto hittades.");
+        }
+
+        return account;
+    }
+
+    private double getPositiveAmount() {
+        double amount;
+        amount = ih.readDouble("belopp: ");
+
+        if (amount < 0) {
+            throw new InputMismatchException("du kan bara använda positiva belopp.");
+        }
+
+        return amount;
     }
 
     public Bank getBank() { return bank; }

@@ -14,6 +14,7 @@ public class Bank {
         if (holder == null) {
             holder = new Customer(holderName, idNr);
         }
+        if (!holder.getName().equals(holderName)) return -1; // Får bara finnas en kund med id nr och namn
         BankAccount account = new BankAccount(holder);
         accounts.add(account);
         return account.getAccountNumber();
@@ -91,8 +92,16 @@ public class Bank {
      */
     public ArrayList<Customer> findByPartofName(String namePart) {
         ArrayList<Customer> customers = new ArrayList<>();
+        String name;
+        long id;
+        ArrayList<Long> ids = new ArrayList<Long>();
         for (BankAccount acc: accounts) {
-            if (acc.getHolder().getName().equalsIgnoreCase(namePart)) {
+            name = acc.getHolder().getName();
+            id = acc.getHolder().getIdNr();
+
+            // Uppercase på båda gör case insensitive
+            if (name.toUpperCase().contains(namePart.toUpperCase()) && !ids.contains(id)) {
+                ids.add(id);
                 customers.add(acc.getHolder());
             }
         }

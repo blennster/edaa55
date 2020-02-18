@@ -1,38 +1,34 @@
+import java.util.Scanner;
 import java.util.Stack;
 
 public class InputTester extends InputHelper {
-    Stack<String> inputStack = new Stack<>();
 
     /**
      * En förlänging av inputhelper klassen som kan användas i testningsyfte.
      * @param inputs
      */
     public InputTester(String[] inputs) {
-        super(null); // Kan ge null error vilket är bra för scanner ska inte användas
+        super(null);
         setInputs(inputs);
     }
 
-    public InputTester() {
-        super(null); // Kan ge null error vilket är bra för scanner ska inte användas
+    public InputTester(Scanner mockupScan) {
+        super(mockupScan);
+    }
+
+    protected void displayPrompt(String prompt) {
+        // Gör inget
     }
 
     /**
-     * Ger tillbacka en int från den raden som förväntas i input
+     * Tar emot en lista och applicerar den på input stack i omvänd ordning.
+     * @param inputs
      */
-    @Override
-    public int readInt(String prompt) {
-        return Integer.parseInt(inputStack.pop());
-    }
-
-    @Override
-    public String readLine(String prompt) {
-        return inputStack.pop();
-    }
-
     public void setInputs(String[] inputs) {
-        this.inputStack.clear();
-        for (int i = inputs.length; i > 0; i--) {
-            this.inputStack.push(inputs[i - 1]);
+        StringBuilder strB = new StringBuilder();
+        for (String str : inputs) {
+            strB.append(str).append("\n");
         }
+        setScan(new Scanner(strB.toString()));
     }
 }
